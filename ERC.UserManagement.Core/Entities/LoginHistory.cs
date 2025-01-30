@@ -11,6 +11,6 @@ public class LoginHistory
     #endregion
 
     #region Relations
-    public UserAccount UserAccount { get; set; }
+    public UserAccount? UserAccount { get; set; }
     #endregion
 }

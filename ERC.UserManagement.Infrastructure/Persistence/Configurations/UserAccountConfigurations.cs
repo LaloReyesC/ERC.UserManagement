@@ -20,6 +20,10 @@ internal class UserAccountConfigurations : IEntityTypeConfiguration<UserAccount>
         builder.Property(u => u.PasswordHash)
             .IsRequired();
 
+        builder.Property(u => u.FailedAttemps)
+            .IsRequired()
+            .HasDefaultValue(0);
+
         builder.Property(u => u.RegistrationDate)
             .IsRequired()
             .HasDefaultValueSql("GETDATE()");

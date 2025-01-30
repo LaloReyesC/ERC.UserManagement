@@ -11,10 +11,12 @@ public class UserAccount
 
     public required string PasswordHash { get; set; }
 
+    public ushort FailedAttemps { get; set; }
+
     public DateTime RegistrationDate { get; set; }
     #endregion
 
     #region Relations
-    public ICollection<LoginHistory> LoginHistories { get; set; }
+    public ICollection<LoginHistory>? LoginHistories { get; set; }
     #endregion
 }
