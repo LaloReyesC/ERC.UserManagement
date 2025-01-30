@@ -6,7 +6,7 @@ public static class LayerDependencies
     {
         services.AddDbContext<ApplicationDbContext>(builder =>
         {
-            builder.UseSqlite("Data Source = UserManager.db");
+            builder.UseSqlite(Constants.SqliteConnectionString);
         });
 
         return services;

@@ -6,7 +6,7 @@ internal class ApplicationDbContextFactory : IDesignTimeDbContextFactory<Applica
     {
         DbContextOptionsBuilder<ApplicationDbContext> optionsBuilder = new();
 
-        optionsBuilder.UseSqlite("Data Source=UserManager.db");
+        optionsBuilder.UseSqlite(Constants.SqliteConnectionString);
 
         return new ApplicationDbContext(optionsBuilder.Options);
     }
