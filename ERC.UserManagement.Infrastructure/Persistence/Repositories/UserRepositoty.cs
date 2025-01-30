@@ -27,4 +27,18 @@ public class UserRepositoty(ApplicationDbContext dbContext) : IUserRepository
     /// <inheritdoc/>
     public async Task<UserAccount?> FindByIdAsync(int id) =>
         await _dbContext.UserAccounts.FirstOrDefaultAsync(u => u.Id == id);
+
+    /// <inheritdoc/>
+    public async Task<UserAccount?> FindByUserNameAsync(string userName) =>
+        await _dbContext.UserAccounts.FirstOrDefaultAsync(u => u.UserName == userName);
+
+    /// <inheritdoc/>
+    public async Task<bool> UpdateAsync(UserAccount userAccount)
+    {
+        _dbContext.UserAccounts.Update(userAccount);
+
+        int affectedRows = await _dbContext.SaveChangesAsync();
+
+        return affectedRows > 0;
+    }
 }

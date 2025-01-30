@@ -4,7 +4,12 @@ public static class TestRouters
 {
     public static void MapTestEndPoints(this WebApplication? app)
     {
-        RouteGroupBuilder testGroup = app!
+        if (!app!.Environment.IsDevelopment())
+        {
+            return;
+        }
+
+        RouteGroupBuilder testGroup = app
             .MapGroup("Test")
             .WithTags("Test");
 

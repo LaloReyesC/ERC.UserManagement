@@ -29,4 +29,18 @@ public interface IUserRepository
     /// <param name="id"></param>
     /// <returns></returns>
     Task<UserAccount?> FindByIdAsync(int id);
+
+    /// <summary>
+    /// Busca la cuenta de usuario por el nombre de usuario
+    /// </summary>
+    /// <param name="userName"></param>
+    /// <returns></returns>
+    Task<UserAccount?> FindByUserNameAsync(string userName);
+
+    /// <summary>
+    /// Actualiza la información de la cuenta
+    /// </summary>
+    /// <param name="userAccount"></param>
+    /// <returns></returns>
+    Task<bool> UpdateAsync(UserAccount userAccount);
 }

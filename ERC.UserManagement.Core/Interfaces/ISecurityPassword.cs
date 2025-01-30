@@ -15,5 +15,5 @@ public interface ISecurityPassword
     /// <param name="password">Contraseña a verificar</param>
     /// <param name="hash">Hash a verificar</param>
     /// <returns>Retorna una bandera que indica si el hash hace match con la contraseña o no</returns>
-    bool VerifyHash(string password, string hash);
+    bool ValidHash(string password, string hash);
 }

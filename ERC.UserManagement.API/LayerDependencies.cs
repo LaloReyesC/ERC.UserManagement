@@ -2,7 +2,7 @@
 
 public static class LayerDependencies
 {
-    public static IServiceCollection AddApiDependencies(this IServiceCollection services)
+    public static IServiceCollection AddApiDependencies(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddControllers();
         services.AddEndpointsApiExplorer();
@@ -42,6 +42,8 @@ public static class LayerDependencies
                 options.IncludeXmlComments(xmlPath);
             }
         });
+        services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
+        services.AddExceptionHandler<CustomExceptionHandler>();
 
         return services;
     }

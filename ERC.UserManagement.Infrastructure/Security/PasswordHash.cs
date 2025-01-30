@@ -11,7 +11,7 @@ public class PasswordHash : ISecurityPassword
         _passwordHasher.HashPassword(null, password);
 
     /// <inheritdoc/>
-    public bool VerifyHash(string password, string hash)
+    public bool ValidHash(string password, string hash)
     {
         var result = _passwordHasher.VerifyHashedPassword(null, hash, password);
 
