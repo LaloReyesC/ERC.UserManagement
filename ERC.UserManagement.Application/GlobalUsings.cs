@@ -1,0 +1,16 @@
+﻿global using ERC.UserManagement.Application.Features.Commons;
+global using ERC.UserManagement.Core.Entities;
+global using ERC.UserManagement.Core.Interfaces;
+global using ERC.UserManagement.Core.Models.Dtos;
+global using ERC.UserManagement.Core.Models.Options;
+global using Mapster;
+global using MediatR;
+global using Microsoft.AspNetCore.Authentication.JwtBearer;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Options;
+global using Microsoft.IdentityModel.Tokens;
+global using System.ComponentModel;
+global using System.IdentityModel.Tokens.Jwt;
+global using System.Security.Claims;
+global using System.Text;

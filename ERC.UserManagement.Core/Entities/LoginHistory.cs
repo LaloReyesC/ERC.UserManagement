@@ -7,10 +7,10 @@ public class LoginHistory
 
     public int UserAccountId { get; set; }
 
-    public DateTime LoginDate { get; set; }
+    public DateTime LoginDate { get; set; } = DateTime.Now;
     #endregion
 
     #region Relations
-    public UserAccount UserAccount { get; set; }
+    public UserAccount? UserAccount { get; set; }
     #endregion
 }
