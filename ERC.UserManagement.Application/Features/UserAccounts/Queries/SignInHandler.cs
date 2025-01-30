@@ -1,11 +1,13 @@
 ﻿namespace ERC.UserManagement.Application.Features.UserAccounts.Queries;
 
 public class SignInHandler(IUserRepository userRepository,
+                       ILoginHistoryRepository loginHistoryRepository,
                        ISecurityPassword securityPassword,
                        IOptions<JwtSettings> JwtSettingsOptions) : IRequestHandler<SignInDto, SignInResponse>
 {
     #region Fields
     private readonly IUserRepository _userRepository = userRepository;
+    private readonly ILoginHistoryRepository _loginHistoryRepository = loginHistoryRepository;
     private readonly ISecurityPassword _securityPassword = securityPassword;
     private readonly JwtSettings _jwtSettings = JwtSettingsOptions.Value;
     #endregion
@@ -37,6 +39,8 @@ public class SignInHandler(IUserRepository userRepository,
         user.FailedAttemps = 0;
 
         var token = GenerateToken(user, _jwtSettings);
+
+        _ = await _loginHistoryRepository.CreateAsync(new() { UserAccountId = user.Id });
 
         return new()
         {

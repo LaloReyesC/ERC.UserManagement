@@ -15,6 +15,8 @@ public class CustomExceptionHandler : IExceptionHandler
             { typeof(NotFoundException), HandleNotFoundException },
             { typeof(UnauthorizedAccessException), HandleUnauthorizedAccessException },
             { typeof(ApplicationException), HandleApplicationException },
+            { typeof(NotImplementedException), HandleApplicationException },
+            { typeof(Exception), HandleException },
         };
     }
 
@@ -83,6 +85,19 @@ public class CustomExceptionHandler : IExceptionHandler
             Title = "BadRequest",
             Type = "https://tools.ietf.org/html/rfc7231#section-6.5.3",
             Detail = ex.Message
+        });
+    }
+
+    async Task HandleException(HttpContext httpContext, Exception ex)
+    {
+        httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
+
+        await httpContext.Response.WriteAsJsonAsync(new ProblemDetails
+        {
+            Status = StatusCodes.Status500InternalServerError,
+            Title = "InternalServerError",
+            Type = "https://tools.ietf.org/html/rfc7231#section-6.5.3",
+            Detail = "Ocurrio un error no controlado, intentalo más tarde"
         });
     }
     #endregion

@@ -10,6 +10,7 @@ public static class LayerDependencies
         });
 
         services.AddTransient<IUserRepository, UserRepositoty>();
+        services.AddTransient<ILoginHistoryRepository, LoginHistoryRepository>();
         services.AddSingleton<ISecurityPassword, PasswordHash>();
 
         return services;

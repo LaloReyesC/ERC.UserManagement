@@ -1,7 +1,6 @@
-﻿
-namespace ERC.UserManagement.Application.Features.UserAccounts.Queries;
+﻿namespace ERC.UserManagement.Application.Features.LoginHistories.Queries;
 
-public class GetAllAccountsDto : IRequest<GetAllAccountsResponse>
+public class GetAllHistoryDto : IRequest<GetAllHistoryResponse>
 {
     #region Properties
     [DefaultValue(1)]

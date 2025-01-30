@@ -45,7 +45,9 @@ public class UserRepositoty(ApplicationDbContext dbContext) : IUserRepository
     /// <inheritdoc/>
     public async Task<IReadOnlyList<UserAccount>?> GetAllAsync(int desiredPage = 1, int rowsPerPage = 10)
     {
-        IQueryable<UserAccount> query = _dbContext.UserAccounts.AsQueryable();
+        IQueryable<UserAccount> query = _dbContext.UserAccounts.AsQueryable()
+            .AsNoTracking()
+            .OrderByDescending(x => x.Id);
 
         query = query.Skip((desiredPage - 1) * rowsPerPage)
                      .Take(rowsPerPage);

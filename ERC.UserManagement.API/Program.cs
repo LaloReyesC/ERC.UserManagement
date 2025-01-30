@@ -19,5 +19,6 @@ app.UseExceptionHandler(options => { });
 app.MapTestEndPoints();
 app.MapAccountEndPoints();
 app.MapAuthEndPoints();
+app.MapLoginHistoryEndPoints();
 
 app.Run();

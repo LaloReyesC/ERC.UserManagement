@@ -26,20 +26,9 @@ public static class AuthRouters
         return Results.Ok(response);
     }
 
-    static async Task<IResult> RefreshToken(IMediator mediator, int id)
+    static Task<IResult> RefreshToken(IMediator mediator, RefreshTokenDto refreshToken)
     {
-        FindUserAccountResponse? response = await mediator.Send(new FindUserAccountDto(id));
-
-        if (response is null)
-        {
-            ResponseDto<object> notFoundResult = new();
-
-            notFoundResult.AddDetail("La cuenta no se encuentra registrada.");
-
-            return Results.NotFound(notFoundResult);
-        }
-
-        return Results.Ok(response);
+        throw new NotImplementedException("Funcionalidad en desarrollo.");
     }
 
     static async Task<IResult> CreateAccountAsync(IMediator mediator, SignUpDto request)
