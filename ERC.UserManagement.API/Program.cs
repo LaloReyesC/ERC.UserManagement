@@ -1,5 +1,3 @@
-using Microsoft.OpenApi.Models;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -40,6 +38,7 @@ builder.Services.AddSwaggerGen(options =>
         options.IncludeXmlComments(xmlPath);
     }
 });
+builder.Services.AddInfrastructureDependencies();
 
 var app = builder.Build();
 
@@ -60,6 +59,16 @@ testGroup.MapGet("Connection", () =>
     return Results.Ok(new
     {
         message = "Prueba de conexión exitosa."
+    });
+});
+
+testGroup.MapGet("DataBase", async (ApplicationDbContext dbContext) =>
+{
+    int currentUsersNumber = await dbContext.UserAccounts.CountAsync();
+
+    return Results.Ok(new
+    {
+        message = $"Actualmente se encuentran registrados '{currentUsersNumber}' usuarios."
     });
 });
 
