@@ -22,4 +22,11 @@ public interface IUserRepository
     /// <param name="userName">Nombre de usuario a verificar</param>
     /// <returns>Retorna true en caso que exista el nombre de usario, de lo contrario false</returns>
     Task<bool> ExistsUserNameAsync(string userName);
+
+    /// <summary>
+    /// Busca la cuenta de usuario por el identificador de la cuenta
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    Task<UserAccount?> FindByIdAsync(int id);
 }

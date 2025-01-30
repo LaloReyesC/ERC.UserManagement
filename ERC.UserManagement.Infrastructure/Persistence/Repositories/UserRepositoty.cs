@@ -23,4 +23,8 @@ public class UserRepositoty(ApplicationDbContext dbContext) : IUserRepository
     /// <inheritdoc/>
     public async Task<bool> ExistsUserNameAsync(string userName) =>
         await _dbContext.UserAccounts.AnyAsync(u => u.UserName == userName);
+
+    /// <inheritdoc/>
+    public async Task<UserAccount?> FindByIdAsync(int id) =>
+        await _dbContext.UserAccounts.FirstOrDefaultAsync(u => u.Id == id);
 }

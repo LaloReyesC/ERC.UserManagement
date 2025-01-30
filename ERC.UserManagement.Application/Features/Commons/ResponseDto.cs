@@ -9,4 +9,9 @@ public class ResponseDto<T>
 
     public T? Data { get; set; }
     #endregion
+
+    public void AddDetail(string message)
+    {
+        Details.Add(message);
+    }
 }
