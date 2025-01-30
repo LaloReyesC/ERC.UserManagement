@@ -13,7 +13,7 @@ public class UserAccount
 
     public ushort FailedAttemps { get; set; }
 
-    public DateTime RegistrationDate { get; set; }
+    public DateTime RegistrationDate { get; set; } = DateTime.Now;
     #endregion
 
     #region Relations

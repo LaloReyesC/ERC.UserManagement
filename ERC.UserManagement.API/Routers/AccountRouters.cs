@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace ERC.UserManagement.API.Routers;
+﻿namespace ERC.UserManagement.API.Routers;
 
 public static class AccountRouters
 {
@@ -10,9 +8,17 @@ public static class AccountRouters
             .MapGroup("Accounts")
             .WithTags("Accounts");
 
-        testGroup.MapPost(string.Empty, (IMediator mediator) =>
-        {
-            return Results.Ok();
-        });
+        testGroup.MapPost(string.Empty, CreateAccountAsync);
     }
+
+    #region Private members
+    static async Task<IResult> CreateAccountAsync(IMediator mediator, SignUpDto request)
+    {
+        SignUpResponse response = await mediator.Send(request);
+
+        return response.Success ?
+               Results.Created($"/Accounts/{response.Data}", response) :
+               Results.BadRequest(response);
+    }
+    #endregion
 }

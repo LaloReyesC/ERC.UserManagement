@@ -9,6 +9,9 @@ public static class LayerDependencies
             builder.UseSqlite(Constants.SqliteConnectionString);
         });
 
+        services.AddTransient<IUserRepository, UserRepositoty>();
+        services.AddSingleton<ISecurityPassword, PasswordHash>();
+
         return services;
     }
 }
