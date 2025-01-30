@@ -41,4 +41,15 @@ public class UserRepositoty(ApplicationDbContext dbContext) : IUserRepository
 
         return affectedRows > 0;
     }
+
+    /// <inheritdoc/>
+    public async Task<IReadOnlyList<UserAccount>?> GetAllAsync(int desiredPage = 1, int rowsPerPage = 10)
+    {
+        IQueryable<UserAccount> query = _dbContext.UserAccounts.AsQueryable();
+
+        query = query.Skip((desiredPage - 1) * rowsPerPage)
+                     .Take(rowsPerPage);
+
+        return await query.ToListAsync();
+    }
 }

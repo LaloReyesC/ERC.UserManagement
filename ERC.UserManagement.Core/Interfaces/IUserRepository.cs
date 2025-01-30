@@ -43,4 +43,12 @@ public interface IUserRepository
     /// <param name="userAccount"></param>
     /// <returns></returns>
     Task<bool> UpdateAsync(UserAccount userAccount);
+
+    /// <summary>
+    /// Obtiene el listado de usuarios con paginado
+    /// </summary>
+    /// <param name="desiredPage"></param>
+    /// <param name="rowsPerPage"></param>
+    /// <returns></returns>
+    Task<IReadOnlyList<UserAccount>?> GetAllAsync(int desiredPage = 1, int rowsPerPage = 10);
 }
