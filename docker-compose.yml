@@ -1,0 +1,10 @@
+version: "3"
+services:
+  user-manager-api:
+    restart: unless-stopped
+    image: user-manager-api
+    container_name: user-manager
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    ports:
+      - "8082:8080"
